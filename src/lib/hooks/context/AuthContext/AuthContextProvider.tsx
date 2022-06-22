@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Home } from "./components/Home/Home";
-import { Login } from "./components/Login/Login";
-import { useAuthContext } from "./lib/hooks/context/AuthContext/AuthContext";
+import { AuthContext, AuthContextField } from "./AuthContext";
 
-function App() {
+interface Props {
+  children: React.ReactNode;
+}
+
+export const AuthContextProvider = (props: Props) => {
   const [user, setUser] = useState<string | null>(() =>
     localStorage.getItem("user")
   );
@@ -21,11 +23,15 @@ function App() {
     window.location.reload();
   };
 
-  return user !== null ? (
-    <Home user={user} onLogout={handleLogout} />
-  ) : (
-    <Login onLogin={handleLogin} />
-  );
-}
+  const context: AuthContextField = {
+    user: user,
+    onLogin: handleLogin,
+    onLogout: handleLogout,
+  };
 
-export default App;
+  return (
+    <AuthContext.Provider value={context}>
+      {props.children}
+    </AuthContext.Provider>
+  );
+};

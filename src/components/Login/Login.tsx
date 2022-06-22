@@ -1,24 +1,27 @@
-import { Button, TextField } from "@mui/material";
+import { useAuthContext } from "../../lib/hooks/context/AuthContext/AuthContext";
+import { useLoginFormik } from "../../lib/hooks/useLoginFormik";
+import LoginForm from "../Login/LoginForm";
 
-export const Login = () => {
+interface Props {
+  onLogin: (username: string) => void;
+}
+
+export const Login = ({ onLogin }: Props) => {
+  const context = useAuthContext();
+
+  const formik = useLoginFormik({
+    onSubmit(values, formikHelpers) {
+      onLogin(values.username);
+    },
+  });
+
   return (
     <div
       style={{
         margin: "50px",
-        display: "flex",
-        flexDirection: "column",
-        rowGap: "20px",
-        width: "400px",
       }}
     >
-      <h1>Login Form</h1>
-      <TextField label="Username" />
-      <TextField
-        type="password"
-        label="Password"
-        autoComplete="current-password"
-      />
-      <Button variant="contained">Log in</Button>
+      <LoginForm formik={formik} />
     </div>
   );
 };
