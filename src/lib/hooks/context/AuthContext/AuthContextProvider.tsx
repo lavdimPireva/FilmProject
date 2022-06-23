@@ -11,13 +11,11 @@ export const AuthContextProvider = (props: Props) => {
   );
 
   const handleLogin = (username: string) => {
-    console.log("brenda handleLogin");
-
     setUser(username);
     localStorage.setItem("user", username);
   };
 
-  const handleLogout = (username: void) => {
+  const handleLogout = () => {
     setUser(null);
     localStorage.removeItem("user");
     window.location.reload();
@@ -30,7 +28,7 @@ export const AuthContextProvider = (props: Props) => {
   };
 
   return (
-    <AuthContext.Provider value={context}>
+    <AuthContext.Provider value={{ ...context }}>
       {props.children}
     </AuthContext.Provider>
   );

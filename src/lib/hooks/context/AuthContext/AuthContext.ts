@@ -8,8 +8,12 @@ export interface AuthContextField {
 
 export const AuthContext = React.createContext<AuthContextField>({
   user: null,
-  onLogin: (username: string) => {},
+  onLogin: () => {},
   onLogout: () => {},
 });
 
-export const useAuthContext = () => useContext(AuthContext);
+export const useAuthContext = () => {
+  const context = useContext(AuthContext);
+
+  return context;
+};

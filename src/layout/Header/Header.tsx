@@ -1,12 +1,8 @@
 import { Box } from "@mui/material";
 import { useAuthContext } from "../../lib/hooks/context/AuthContext/AuthContext";
 
-interface Props {
-  onLogout: () => void;
-}
-
-export const Header = ({ onLogout }: Props) => {
-  const context = useAuthContext();
+export const Header = () => {
+  const { onLogout } = useAuthContext();
 
   return (
     <div>
