@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../../lib/hooks/context/AuthContext/AuthContext";
 
 export const Header = () => {
@@ -33,7 +34,9 @@ export const Header = () => {
             }}
           >
             <li>My Movies</li>
-            <li>My Profile</li>
+            <li>
+              <NavLink to="my-profile">My Profile</NavLink>
+            </li>
             <li
               onClick={onLogout}
               style={{

@@ -1,11 +1,17 @@
-import { Home } from "./components/Home/Home";
-import { Login } from "./components/Login/Login";
+import { Home } from "./pages/Home/Home";
+import { Login } from "./pages/Login/Login";
 import { useAuthContext } from "./lib/hooks/context/AuthContext/AuthContext";
+import { Route, Routes } from "react-router-dom";
+import { MyProfile } from "./pages/MyProfile/MyProfile";
 
 function App() {
-  const { user } = useAuthContext();
-
-  return user !== null ? <Home /> : <Login />;
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/my-profile" element={<MyProfile />} />
+    </Routes>
+  );
 }
 
 export default App;
