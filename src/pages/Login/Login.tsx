@@ -8,6 +8,7 @@ export const Login = () => {
 
   const formik = useLoginFormik({
     onSubmit(values, formikHelpers) {
+      console.log(values.username);
       onLogin(values.username);
     },
   });

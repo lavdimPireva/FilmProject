@@ -1,23 +1,31 @@
 import { Home } from "./pages/Home/Home";
 import { Login } from "./pages/Login/Login";
-import { useRoutes } from "react-router-dom";
+import { Outlet, useRoutes } from "react-router-dom";
 import { MyProfile } from "./pages/MyProfile/MyProfile";
 import { Register } from "./pages/Register/Register";
+import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
   const routes = useRoutes([
     {
       path: "/",
-      element: <Home />,
-    },
-
-    {
-      path: "/login",
-      element: <Login />,
+      element: (
+        <ProtectedRoute>
+          <Home />
+        </ProtectedRoute>
+      ),
     },
     {
       path: "/my-profile",
-      element: <MyProfile />,
+      element: (
+        <ProtectedRoute>
+          <MyProfile />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/login",
+      element: <Login />,
     },
     {
       path: "/register",
