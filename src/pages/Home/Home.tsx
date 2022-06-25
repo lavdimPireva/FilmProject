@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { Navigate } from "react-router-dom";
 import { Header } from "../../layout/Header/Header";
 import { Sidebar } from "../../layout/Sidebar/Sidebar";
@@ -17,9 +18,9 @@ export const Home = () => {
       <div>
         <Sidebar />
       </div>
-      <main>
+      <Box sx={{ margin: 4, textAlign: "center" }}>
         <h1>Welcome {user?.split("@")[0]!}</h1>
-      </main>
+      </Box>
     </div>
   );
 };
