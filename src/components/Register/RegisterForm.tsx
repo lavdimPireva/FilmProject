@@ -1,95 +1,122 @@
+import { Link as linkRoute } from "react-router-dom";
 import {
-  Avatar,
   Box,
-  Button,
-  Grid,
   Link,
+  Button,
+  Container,
   TextField,
   Typography,
 } from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import React from "react";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { RegisterFormik } from "../../lib/hooks/useRegisterFormik";
 
-export const RegisterForm = () => {
+interface Props {
+  formik: RegisterFormik;
+}
+
+export const RegisterForm = ({ formik }: Props) => {
   return (
-    <Box
-      sx={{
-        marginTop: 8,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <Avatar sx={{ bgcolor: "secondary.main" }}>
-        <LockOutlinedIcon />
-      </Avatar>
-
-      <Typography component="h1" variant="h5">
-        Sign up
-      </Typography>
-
-      <Box component="form" sx={{ marginTop: 3 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
+    <>
+      <Box
+        component="main"
+        sx={{
+          marginTop: 20,
+          alignItems: "center",
+          display: "flex",
+          flexGrow: 1,
+          minHeight: "100%",
+        }}
+      >
+        <Container maxWidth="sm">
+          <Button
+            component={linkRoute}
+            to="/"
+            startIcon={<ArrowBackIcon fontSize="small" />}
+          >
+            Dashboard
+          </Button>
+          <form onSubmit={formik.handleSubmit}>
+            <Box sx={{ my: 3 }}>
+              <Typography color="textPrimary" variant="h4">
+                Create a new account
+              </Typography>
+              <Typography color="textSecondary" gutterBottom variant="body2">
+                Use your email to create a new account
+              </Typography>
+            </Box>
             <TextField
-              autoComplete="given-name"
-              name="firstName"
-              required
+              error={Boolean(
+                formik.errors.firstName && formik.touched.firstName
+              )}
+              helperText={formik.touched.firstName && formik.errors.firstName}
               fullWidth
-              id="firstName"
               label="First Name"
-              autoFocus
+              margin="normal"
+              name="firstName"
+              variant="outlined"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.firstName}
             />
-          </Grid>
-          <Grid item xs={12} sm={6}>
             <TextField
-              required
+              error={Boolean(formik.touched.lastName && formik.errors.lastName)}
               fullWidth
-              id="lastName"
+              helperText={formik.touched.lastName && formik.errors.lastName}
               label="Last Name"
+              margin="normal"
               name="lastName"
-              autoComplete="family-name"
+              variant="outlined"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.lastName}
             />
-          </Grid>
-          <Grid item xs={12}>
             <TextField
-              required
+              error={Boolean(formik.touched.email && formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
               fullWidth
-              id="email"
               label="Email Address"
+              margin="normal"
               name="email"
-              autoComplete="email"
+              type="email"
+              variant="outlined"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
             />
-          </Grid>
-          <Grid item xs={12}>
             <TextField
-              required
+              error={Boolean(formik.touched.password && formik.errors.password)}
               fullWidth
-              name="password"
+              helperText={formik.touched.password && formik.errors.password}
               label="Password"
+              margin="normal"
+              name="password"
               type="password"
-              id="password"
-              autoComplete="new-password"
+              variant="outlined"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
-          </Grid>
-        </Grid>
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-        >
-          Sign Up
-        </Button>
 
-        <Grid container justifyContent="flex-end">
-          <Grid item>
-            <Link href="#" variant="body2">
-              Already have an account? Sign in
-            </Link>
-          </Grid>
-        </Grid>
+            <Box sx={{ py: 2 }}>
+              <Button
+                color="primary"
+                fullWidth
+                size="large"
+                type="submit"
+                variant="contained"
+              >
+                Register
+              </Button>
+              <Typography color="textSecondary" variant="body2">
+                Have an account?{" "}
+                <Button component={linkRoute} to="/login">
+                  Sign In
+                </Button>
+              </Typography>
+            </Box>
+          </form>
+        </Container>
       </Box>
-    </Box>
+    </>
   );
 };

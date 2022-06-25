@@ -13,14 +13,27 @@ export const Home = () => {
   }
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: "flex",
+        flex: "1 1 auto",
+        flexDirection: "column",
+        width: "100%",
+      }}
+    >
       <Header />
-      <div>
-        <Sidebar />
-      </div>
-      <Box sx={{ margin: 4, textAlign: "center" }}>
-        <h1>Welcome {user?.split("@")[0]!}</h1>
+      <Box
+        sx={{
+          display: "flex",
+        }}
+      >
+        <div>
+          <Sidebar />
+        </div>
+        <Box component="main" sx={{ margin: 10, textAlign: "left" }}>
+          <h1>Welcome {user?.split("@")[0]!}</h1>
+        </Box>
       </Box>
-    </div>
+    </Box>
   );
 };
