@@ -18,13 +18,8 @@ export const RegisterForm = ({ formik }: Props) => {
   return (
     <>
       <Box
-        component="main"
         sx={{
           marginTop: 20,
-          alignItems: "center",
-          display: "flex",
-          flexGrow: 1,
-          minHeight: "100%",
         }}
       >
         <Container maxWidth="sm">
