@@ -14,7 +14,6 @@ export const AuthContextProvider = (props: Props) => {
   );
 
   const handleLogin = (username: string) => {
-    console.log("in handlelogin");
     setUser(username);
     localStorage.setItem("user", username);
     navigate("/");
@@ -26,14 +25,11 @@ export const AuthContextProvider = (props: Props) => {
     navigate("/login");
   };
 
-  const context = useMemo(
-    () => ({
-      user,
-      onLogin: handleLogin,
-      onLogout: handleLogout,
-    }),
-    [user]
-  );
+  const context: AuthContextField = {
+    user,
+    onLogin: handleLogin,
+    onLogout: handleLogout,
+  };
 
   return (
     <AuthContext.Provider value={context}>

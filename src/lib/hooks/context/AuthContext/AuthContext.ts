@@ -1,4 +1,3 @@
-import { ConnectingAirportsOutlined } from "@mui/icons-material";
 import React, { useContext } from "react";
 
 export interface AuthContextField {
@@ -16,7 +15,9 @@ export const AuthContext = React.createContext<AuthContextField>({
 export const useAuthContext = () => {
   const context = useContext(AuthContext);
 
-  console.log("Context", context);
+  if (context === undefined) {
+    throw new Error("useAuthContext was used outside of its Provider");
+  }
 
   return context;
 };

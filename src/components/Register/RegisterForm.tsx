@@ -6,6 +6,14 @@ import {
   Container,
   TextField,
   Typography,
+  FormControlLabel,
+  Radio,
+  FormLabel,
+  RadioGroup,
+  FormControl,
+  FormGroup,
+  Checkbox,
+  FormHelperText,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { RegisterFormik } from "../../lib/hooks/useRegisterFormik";
@@ -17,19 +25,16 @@ interface Props {
 export const RegisterForm = ({ formik }: Props) => {
   return (
     <>
-      <Box
-        sx={{
-          marginTop: 20,
-        }}
-      >
+      <Box sx={{ margin: 5 }}>
         <Container maxWidth="sm">
           <Button
             component={linkRoute}
             to="/"
             startIcon={<ArrowBackIcon fontSize="small" />}
           >
-            Dashboard
+            Home
           </Button>
+
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }}>
               <Typography color="textPrimary" variant="h4">
@@ -40,30 +45,15 @@ export const RegisterForm = ({ formik }: Props) => {
               </Typography>
             </Box>
             <TextField
-              error={Boolean(
-                formik.errors.firstName && formik.touched.firstName
-              )}
-              helperText={formik.touched.firstName && formik.errors.firstName}
+              error={Boolean(formik.touched.username && formik.errors.username)}
+              helperText={formik.touched.username && formik.errors.username}
               fullWidth
-              label="First Name"
+              label="Username"
               margin="normal"
-              name="firstName"
+              name="username"
               variant="outlined"
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.firstName}
-            />
-            <TextField
-              error={Boolean(formik.touched.lastName && formik.errors.lastName)}
-              fullWidth
-              helperText={formik.touched.lastName && formik.errors.lastName}
-              label="Last Name"
-              margin="normal"
-              name="lastName"
-              variant="outlined"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.lastName}
+              value={formik.values.username}
             />
             <TextField
               error={Boolean(formik.touched.email && formik.errors.email)}
@@ -75,8 +65,20 @@ export const RegisterForm = ({ formik }: Props) => {
               type="email"
               variant="outlined"
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
               value={formik.values.email}
+            />
+            <TextField
+              error={Boolean(formik.touched.age && formik.errors.age)}
+              fullWidth
+              helperText={formik.touched.age && formik.errors.age}
+              label="Age"
+              placeholder="Age"
+              margin="normal"
+              name="age"
+              type="number"
+              variant="outlined"
+              onChange={formik.handleChange}
+              value={formik.values.age}
             />
             <TextField
               error={Boolean(formik.touched.password && formik.errors.password)}
@@ -89,9 +91,136 @@ export const RegisterForm = ({ formik }: Props) => {
               variant="outlined"
               value={formik.values.password}
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
             />
 
+            <TextField
+              error={Boolean(
+                formik.touched.confirmPassword && formik.errors.confirmPassword
+              )}
+              fullWidth
+              helperText={
+                formik.touched.confirmPassword && formik.errors.confirmPassword
+              }
+              label="Confirm Password"
+              margin="normal"
+              name="confirmPassword"
+              type="password"
+              variant="outlined"
+              onChange={formik.handleChange}
+              value={formik.values.confirmPassword}
+            />
+
+            <FormControl>
+              <FormLabel id="demo-row-radio-buttons-group-label">
+                Gender
+              </FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="gender"
+                value={formik.values.gender}
+                onChange={formik.handleChange}
+              >
+                <FormControlLabel
+                  value="Female"
+                  control={<Radio />}
+                  label="Female"
+                />
+                <FormControlLabel
+                  value="Male"
+                  control={<Radio />}
+                  label="Male"
+                />
+              </RadioGroup>
+            </FormControl>
+
+            {Boolean(formik.touched.gender && formik.errors.gender) && (
+              <FormHelperText error>{formik.errors.gender}</FormHelperText>
+            )}
+
+            <Box sx={{ marginTop: 3 }}>
+              <span
+                style={{
+                  color: "grey",
+                  fontWeight: "bold",
+                }}
+              >
+                Preferences
+              </span>
+              <FormGroup>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 5,
+                    margin: 2,
+                  }}
+                >
+                  <Box>
+                    <label>
+                      Action
+                      <Checkbox
+                        name="preferences"
+                        value="Action"
+                        onChange={formik.handleChange}
+                      />
+                    </label>
+                  </Box>
+
+                  <Box>
+                    <label>
+                      Comedy
+                      <Checkbox
+                        name="preferences"
+                        value="Comedy"
+                        onChange={formik.handleChange}
+                      />
+                    </label>
+                  </Box>
+                  <Box>
+                    <label>
+                      Drama
+                      <Checkbox
+                        name="preferences"
+                        value="Drama"
+                        onChange={formik.handleChange}
+                      />
+                    </label>
+                  </Box>
+                  <Box>
+                    <label>
+                      Sci-Fi
+                      <Checkbox
+                        name="preferences"
+                        value="Sci-Fi"
+                        onChange={formik.handleChange}
+                      />
+                    </label>
+                  </Box>
+                  <Box>
+                    <label>
+                      Thriller
+                      <Checkbox
+                        name="preferences"
+                        value="Thriller"
+                        onChange={formik.handleChange}
+                      />
+                    </label>
+                  </Box>
+                  <Box>
+                    <label>
+                      Other
+                      <Checkbox
+                        name="preferences"
+                        value="Other"
+                        onChange={formik.handleChange}
+                      />
+                    </label>
+                  </Box>
+                </Box>
+              </FormGroup>
+            </Box>
             <Box sx={{ py: 2 }}>
               <Button
                 color="primary"
