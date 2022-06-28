@@ -26,7 +26,7 @@ const RegisterSchema = Yup.object().shape({
     .email("Must be a valid email")
     .max(255)
     .required("Email is required"),
-  age: Yup.number().positive().integer().required("Age is required"),
+  age: Yup.number().min(18).positive().integer().required("Age is required"),
   password: Yup.string().max(255).required("Password is required"),
   confirmPassword: Yup.string().oneOf(
     [Yup.ref("password"), null],
@@ -35,11 +35,11 @@ const RegisterSchema = Yup.object().shape({
   gender: Yup.string()
     .required()
     .oneOf(["Male", "Female"], "Gender is Required"),
-  performance: Yup.array().optional(),
+  preferences: Yup.array().optional(),
 });
 
 export const useReigsterFormik = (props: UseRegisterFormOptions) => {
-  return useFormik({
+  return useFormik<RegisterFields>({
     initialValues: {
       username: "",
       email: "",
@@ -47,7 +47,7 @@ export const useReigsterFormik = (props: UseRegisterFormOptions) => {
       age: "",
       confirmPassword: "",
       gender: "",
-      preferences: [""],
+      preferences: [],
     },
     validateOnBlur: false,
     validateOnChange: true,

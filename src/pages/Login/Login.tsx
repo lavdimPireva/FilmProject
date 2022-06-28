@@ -1,7 +1,7 @@
 import { useAuthContext } from "../../lib/hooks/context/AuthContext/AuthContext";
 import { useLoginFormik } from "../../lib/hooks/useLoginFormik";
-import LoginForm from "../../components/Login/LoginForm";
 import { Navigate } from "react-router-dom";
+import { LoginForm } from "../../components/Login/LoginForm";
 
 export const Login = () => {
   const { user, onLogin } = useAuthContext();
@@ -12,10 +12,6 @@ export const Login = () => {
       onLogin(values.username);
     },
   });
-
-  if (user !== null) {
-    return <Navigate to="/" />;
-  }
 
   return (
     <div

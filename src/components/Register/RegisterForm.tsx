@@ -1,8 +1,8 @@
-import { Link as linkRoute } from "react-router-dom";
+import { Link as LinkRoute } from "react-router-dom";
 import {
   Box,
-  Link,
   Button,
+  Link,
   Container,
   TextField,
   Typography,
@@ -15,7 +15,6 @@ import {
   Checkbox,
   FormHelperText,
 } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { RegisterFormik } from "../../lib/hooks/useRegisterFormik";
 
 interface Props {
@@ -25,16 +24,8 @@ interface Props {
 export const RegisterForm = ({ formik }: Props) => {
   return (
     <>
-      <Box sx={{ margin: 5 }}>
+      <Box sx={{ margin: 7 }}>
         <Container maxWidth="sm">
-          <Button
-            component={linkRoute}
-            to="/"
-            startIcon={<ArrowBackIcon fontSize="small" />}
-          >
-            Home
-          </Button>
-
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }}>
               <Typography color="textPrimary" variant="h4">
@@ -203,7 +194,7 @@ export const RegisterForm = ({ formik }: Props) => {
                       Thriller
                       <Checkbox
                         name="preferences"
-                        value="Thriller"
+                        value={"Thriller"}
                         onChange={formik.handleChange}
                       />
                     </label>
@@ -232,10 +223,7 @@ export const RegisterForm = ({ formik }: Props) => {
                 Register
               </Button>
               <Typography color="textSecondary" variant="body2">
-                Have an account?{" "}
-                <Button component={linkRoute} to="/login">
-                  Sign In
-                </Button>
+                Have an account? <LinkRoute to="/login">Sign In</LinkRoute>
               </Typography>
             </Box>
           </form>

@@ -1,4 +1,3 @@
-import { CenterFocusStrong } from "@mui/icons-material";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -8,7 +7,7 @@ interface Props {
   formik: LoginFormik;
 }
 
-function LoginForm({ formik }: Props) {
+export const LoginForm = ({ formik }: Props) => {
   return (
     <>
       <Container
@@ -84,6 +83,4 @@ function LoginForm({ formik }: Props) {
       </Container>
     </>
   );
-}
-
-export default LoginForm;
+};
