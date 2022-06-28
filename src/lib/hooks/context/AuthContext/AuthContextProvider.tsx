@@ -20,6 +20,7 @@ export const AuthContextProvider = (props: Props) => {
   };
 
   const handleLogout = () => {
+    console.log("Here i am");
     setUser(null);
     localStorage.removeItem("user");
     navigate("/login");

@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { AppBar, Box, CssBaseline, Toolbar, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../../lib/hooks/context/AuthContext/AuthContext";
 
@@ -6,48 +6,48 @@ export const Header = () => {
   const { onLogout } = useAuthContext();
 
   return (
-    <div>
-      <Box
-        component="header"
+    <>
+      <CssBaseline />
+      <AppBar
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "0 20px",
-          position: "fixed",
-          width: "95%",
           zIndex: (theme) => theme.zIndex.drawer + 1,
-          backgroundColor: "#fff",
-          borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
+          background: "#F9FAFC",
+          color: "black",
         }}
       >
-        <div className="logo">
-          <h2>Films Logo</h2>
-        </div>
-        <nav>
-          <Box
-            component="ul"
+        <Toolbar>
+          <Typography
             sx={{
-              display: "flex",
-              listStyle: "none",
-              columnGap: "30px",
+              flexGrow: 1,
             }}
           >
-            <li>My Movies</li>
-            <li>
-              <NavLink to="my-profile">My Profile</NavLink>
-            </li>
-            <li
-              onClick={onLogout}
-              style={{
-                cursor: "pointer",
+            Movies
+          </Typography>
+          <nav>
+            <Box
+              component="ul"
+              sx={{
+                display: "flex",
+                listStyle: "none",
+                columnGap: "30px",
               }}
             >
-              Logout
-            </li>
-          </Box>
-        </nav>
-      </Box>
-    </div>
+              <li>My Movies</li>
+              <li>
+                <NavLink to="my-profile">My Profile</NavLink>
+              </li>
+              <li
+                onClick={onLogout}
+                style={{
+                  cursor: "pointer",
+                }}
+              >
+                Logout
+              </li>
+            </Box>
+          </nav>
+        </Toolbar>
+      </AppBar>
+    </>
   );
 };
