@@ -34,7 +34,7 @@ export const Header = () => {
             >
               <li>My Movies</li>
               <li>
-                <NavLink to="my-profile">My Profile</NavLink>
+                <NavLink to="myProfile">My Profile</NavLink>
               </li>
               <li
                 onClick={onLogout}

@@ -1,5 +1,6 @@
 import { useRoutes } from "react-router-dom";
 import { RouteWrapper } from "../components/ProtectedRoute/RouteWrapper";
+import { Account } from "../pages/Account/Account";
 import { Home } from "../pages/Home/Home";
 import { Login } from "../pages/Login/Login";
 import { MyProfile } from "../pages/MyProfile/MyProfile";
@@ -16,12 +17,18 @@ export const RouteComponent = () => {
       ),
     },
     {
-      path: "/my-profile",
+      path: "/myProfile",
       element: (
         <RouteWrapper routeType="protected">
           <MyProfile />
         </RouteWrapper>
       ),
+      children: [
+        {
+          path: "account",
+          element: <Account />,
+        },
+      ],
     },
     {
       path: "/login",

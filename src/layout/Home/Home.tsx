@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const Home = ({ children }: Props) => {
-  const { user, onLogout } = useAuthContext();
+  const { user } = useAuthContext();
   const navigate = useNavigate();
 
   return (
@@ -23,7 +23,7 @@ export const Home = ({ children }: Props) => {
       {/* Children */}
       <div
         style={{
-          background: "",
+          //   background: "#F9FAFC",
           width: "100%",
         }}
       >

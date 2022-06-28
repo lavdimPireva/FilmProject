@@ -7,6 +7,7 @@ import {
   ListItemText,
   Toolbar,
 } from "@mui/material";
+import { grey, pink } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 
 export const Sidebar = () => {
@@ -17,18 +18,26 @@ export const Sidebar = () => {
   const items = [
     {
       text: "Account",
-      icon: <AccountBox />,
-      path: "/my-profile",
+      icon: <AccountBox fontSize="large" sx={{ color: grey[500] }} />,
+      path: "/myProfile",
     },
     {
       text: "Privacy",
-      icon: <PrivacyTip />,
-      path: "/my-profile",
+      icon: <PrivacyTip fontSize="large" sx={{ color: grey[500] }} />,
+      path: "/myProfile",
     },
+
     {
       text: "Deactive Account",
-      icon: <AccountBox />,
-      path: "/my-profile",
+      icon: (
+        <AccountBox
+          fontSize="large"
+          sx={{
+            color: grey[500],
+          }}
+        />
+      ),
+      path: "/myProfile",
     },
   ];
 
@@ -42,6 +51,7 @@ export const Sidebar = () => {
         "& .MuiDrawer-paper": {
           width: drawerWidth,
           boxSizing: "border-box",
+          backgroundColor: "rgba(46, 43, 101, 0.94)",
         },
       }}
     >
@@ -49,7 +59,14 @@ export const Sidebar = () => {
 
       <List>
         {items.map((item) => (
-          <ListItem key={item.text} button onClick={() => navigate(item.path)}>
+          <ListItem
+            sx={{
+              color: "white",
+            }}
+            key={item.text}
+            button
+            onClick={() => navigate(item.path)}
+          >
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </ListItem>
