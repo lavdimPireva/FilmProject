@@ -12,7 +12,7 @@ export const Home = ({ children }: Props) => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div style={{ display: "flex" }}>
       {user && (
         <>
           <Header />

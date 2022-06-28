@@ -19,12 +19,12 @@ export const Sidebar = () => {
     {
       text: "Account",
       icon: <AccountBox fontSize="large" sx={{ color: grey[500] }} />,
-      path: "/myProfile",
+      path: "/myProfile/account",
     },
     {
       text: "Privacy",
       icon: <PrivacyTip fontSize="large" sx={{ color: grey[500] }} />,
-      path: "/myProfile",
+      path: "/myProfile/privacy",
     },
 
     {
@@ -37,7 +37,7 @@ export const Sidebar = () => {
           }}
         />
       ),
-      path: "/myProfile",
+      path: "/myProfile/deactiveAccount",
     },
   ];
 

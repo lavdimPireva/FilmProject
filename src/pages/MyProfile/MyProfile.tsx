@@ -20,7 +20,6 @@ export const MyProfile = () => {
 
   return (
     <>
-      {/* <Typography sx={{ mx: "60", my: 15 }}>Account</Typography> */}
       <Box
         sx={{
           mx: "auto",
@@ -49,21 +48,16 @@ export const MyProfile = () => {
                   width: 64,
                 }}
               />
-              {/* emri */}
               <Typography color="textPrimary" gutterBottom variant="h5">
                 Lavdim Pireva
               </Typography>
-              {/*  qyteti shteti */}
               <Typography color="textSecondary" variant="body2">
                 Prishtine, Kosova
               </Typography>
 
-              {/* timezone */}
               <Typography color="textSecondary" variant="body2">
                 GM-7
               </Typography>
-              {/* divider */}
-              {/* upload button */}
             </Box>
           </CardContent>
           <Divider />

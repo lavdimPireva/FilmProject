@@ -7,7 +7,7 @@ import {
   TextField,
 } from "@mui/material";
 
-export const Account = () => {
+export const Privacy = () => {
   return (
     <Box sx={{}}>
       <form autoComplete="off" noValidate>
@@ -16,27 +16,30 @@ export const Account = () => {
             marginTop: 5,
           }}
         >
-          <CardHeader subheader="The information can be edited" title="Profile">
+          <CardHeader subheader="The information can be edited" title="Privacy">
             <Divider />
           </CardHeader>
           <CardContent>
             <TextField
-              label="Username"
-              name="username"
+              type="password"
+              label="Current Password"
+              name="currentPassword"
               required
               variant="outlined"
               style={{ margin: 12, width: 1000 }}
             />
             <TextField
-              label="Email"
-              name="email"
+              type="password"
+              label="New Password"
+              name="newPassword"
               required
               variant="outlined"
               style={{ margin: 12, width: 1000 }}
             />
             <TextField
-              label="Address"
-              name="address"
+              type="password"
+              label="Confirm Password"
+              name="confirmPassword"
               required
               variant="outlined"
               style={{ margin: 12, width: 1000 }}
