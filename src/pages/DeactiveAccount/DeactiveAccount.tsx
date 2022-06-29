@@ -12,7 +12,6 @@ export const DeactiveAccount = () => {
   };
 
   const handleClick = () => {
-    console.log("iha");
     if (!checked) {
       onLogout();
     }

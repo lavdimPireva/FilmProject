@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 
 export const Privacy = () => {
   const navigate = useNavigate();
@@ -19,6 +20,16 @@ export const Privacy = () => {
       newPassword: "",
       confirmPassword: "",
     },
+    validationSchema: Yup.object().shape({
+      password: Yup.string().max(255).required("Password is required"),
+      newPassword: Yup.string().max(255).required("Password is required"),
+      confirmPassword: Yup.string().oneOf(
+        [Yup.ref("newPassword"), null],
+        "Password must match!"
+      ),
+    }),
+    validateOnBlur: false,
+    validateOnChange: true,
     onSubmit: (values) => {
       console.log(values);
       navigate("/");
@@ -27,7 +38,7 @@ export const Privacy = () => {
 
   return (
     <Box sx={{}}>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} autoComplete="off" noValidate>
         <Card
           sx={{
             marginTop: 5,
@@ -39,39 +50,46 @@ export const Privacy = () => {
           </CardHeader>
           <CardContent>
             <TextField
+              error={Boolean(formik.touched.password && formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
               type="password"
-              label="Password"
+              label="Current Password"
               name="password"
               required
               variant="outlined"
               style={{ margin: 12, width: 1000 }}
-              error={Boolean(formik.touched.password && formik.errors.password)}
               value={formik.values.password}
               onChange={formik.handleChange}
             />
             <TextField
+              error={Boolean(
+                formik.touched.newPassword && formik.errors.newPassword
+              )}
+              helperText={
+                formik.touched.newPassword && formik.errors.newPassword
+              }
               type="password"
               label="New Password"
               name="newPassword"
               required
               variant="outlined"
               style={{ margin: 12, width: 1000 }}
-              error={Boolean(
-                formik.touched.newPassword && formik.errors.newPassword
-              )}
               value={formik.values.newPassword}
               onChange={formik.handleChange}
             />
             <TextField
+              error={Boolean(
+                formik.touched.confirmPassword && formik.errors.confirmPassword
+              )}
+              helperText={
+                formik.touched.confirmPassword && formik.errors.confirmPassword
+              }
               type="password"
               label="Confirm Password"
               name="confirmPassword"
               required
               variant="outlined"
               style={{ margin: 12, width: 1000 }}
-              error={Boolean(
-                formik.touched.confirmPassword && formik.errors.confirmPassword
-              )}
               value={formik.values.confirmPassword}
               onChange={formik.handleChange}
             />
