@@ -28,7 +28,11 @@ export const MyProfile = () => {
           padding: 5,
         }}
       >
-        <Card>
+        <Card
+          sx={{
+            boxShadow: 5,
+          }}
+        >
           <CardContent>
             <Box
               sx={{

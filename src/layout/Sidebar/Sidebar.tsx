@@ -57,7 +57,11 @@ export const Sidebar = () => {
     >
       <Toolbar />
 
-      <List>
+      <List
+        sx={{
+          marginTop: 3,
+        }}
+      >
         {items.map((item) => (
           <ListItem
             sx={{

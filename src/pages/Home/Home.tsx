@@ -9,8 +9,7 @@ export const Home = () => {
   return (
     <Box
       sx={{
-        marginTop: 15,
-        marginLeft: 40,
+        margin: 10,
         // mx: "auto",
       }}
     >

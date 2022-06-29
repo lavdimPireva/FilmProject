@@ -1,9 +1,10 @@
 import { AppBar, Box, CssBaseline, Toolbar, Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../lib/hooks/context/AuthContext/AuthContext";
 
 export const Header = () => {
   const { onLogout } = useAuthContext();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -12,29 +13,46 @@ export const Header = () => {
         sx={{
           zIndex: (theme) => theme.zIndex.drawer + 1,
           background: "#F9FAFC",
-          color: "black",
+          color: "white",
+          backgroundColor: "#1b1b1b",
         }}
       >
         <Toolbar>
-          <Typography
+          <Box
             sx={{
               flexGrow: 1,
             }}
           >
-            Movies
-          </Typography>
+            <img
+              src="https://cdn-gce.allmovie.com/images/allmovie_wordmark.png"
+              style={{
+                width: "80px",
+                cursor: "pointer",
+              }}
+              onClick={() => navigate("/")}
+            />
+          </Box>
           <nav>
             <Box
               component="ul"
               sx={{
                 display: "flex",
-                listStyle: "none",
+                listStyleType: "none",
                 columnGap: "30px",
+                fontWeight: "bold",
               }}
             >
               <li>My Movies</li>
               <li>
-                <NavLink to="myProfile">My Profile</NavLink>
+                <NavLink
+                  to="myProfile"
+                  style={() => ({
+                    color: "white",
+                    textDecoration: "none",
+                  })}
+                >
+                  My Profile
+                </NavLink>
               </li>
               <li
                 onClick={onLogout}
