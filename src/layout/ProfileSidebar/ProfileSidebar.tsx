@@ -1,4 +1,4 @@
-import { AccountBox, PrivacyTip, PrivacyTipRounded } from "@mui/icons-material";
+import { AccountBox, PrivacyTip } from "@mui/icons-material";
 import {
   Drawer,
   List,
@@ -10,25 +10,25 @@ import {
 import { grey } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 
-export const Sidebar = () => {
+export const ProfileSidebar = () => {
   const navigate = useNavigate();
 
   const drawerWidth = 240;
 
   const items = [
     {
-      text: "Post",
+      text: "Account",
       icon: <AccountBox fontSize="large" sx={{ color: grey[500] }} />,
-      path: "/posts",
+      path: "/my-profile/account",
     },
     {
-      text: "Comment",
+      text: "Privacy",
       icon: <PrivacyTip fontSize="large" sx={{ color: grey[500] }} />,
-      path: "/comments",
+      path: "/my-profile/privacy",
     },
 
     {
-      text: "Photos",
+      text: "Deactive Account",
       icon: (
         <AccountBox
           fontSize="large"
@@ -37,10 +37,9 @@ export const Sidebar = () => {
           }}
         />
       ),
-      path: "/photos",
+      path: "/my-profile/deactive-account",
     },
   ];
-
   return (
     <Drawer
       variant="permanent"

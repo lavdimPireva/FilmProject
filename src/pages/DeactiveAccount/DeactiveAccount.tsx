@@ -3,16 +3,16 @@ import { useState } from "react";
 import { useAuthContext } from "../../lib/hooks/context/AuthContext/AuthContext";
 
 export const DeactiveAccount = () => {
-  const [checked, setChecket] = useState(true);
+  const [checked, setChecket] = useState(false);
 
   const { onLogout } = useAuthContext();
 
   const handleChange = () => {
-    setChecket(!checked);
+    setChecket((prev) => !prev);
   };
 
   const handleClick = () => {
-    if (!checked) {
+    if (checked) {
       onLogout();
     }
   };
@@ -28,7 +28,6 @@ export const DeactiveAccount = () => {
         }}
       >
         <Switch checked={checked} onChange={handleChange} />
-
         <Button onClick={handleClick} color="primary" variant="contained">
           Save details
         </Button>

@@ -8,22 +8,23 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { Header } from "../../layout/Header/Header";
+import { ProfileSidebar } from "../../layout/ProfileSidebar/ProfileSidebar";
 import { useAuthContext } from "../../lib/hooks/context/AuthContext/AuthContext";
 
 export const MyProfile = () => {
   const { user } = useAuthContext();
-
-  if (user === null) {
-    return <Navigate to="/login" />;
-  }
+  console.log("myProfile");
 
   return (
     <>
+      <Header />
+      <ProfileSidebar />
       <Box
         sx={{
           mx: "auto",
-          my: 15,
+          my: 3,
           width: 1200,
           padding: 5,
         }}

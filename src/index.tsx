@@ -7,10 +7,13 @@ import { AuthContextProvider } from "./lib/hooks/context/AuthContext/AuthContext
 import { BrowserRouter } from "react-router-dom";
 import { Home } from "./layout/Home/Home";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 const theme = createTheme({
   typography: {
     fontFamily: "Quicksand",
@@ -21,17 +24,22 @@ const theme = createTheme({
   },
 });
 
+const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <AuthContextProvider>
-          <Home>
-            <App />
-          </Home>
-        </AuthContextProvider>
-      </ThemeProvider>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <AuthContextProvider>
+            <Home>
+              <App />
+            </Home>
+          </AuthContextProvider>
+        </ThemeProvider>
+      </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

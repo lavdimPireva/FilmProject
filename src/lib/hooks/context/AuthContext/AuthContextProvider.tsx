@@ -16,14 +16,12 @@ export const AuthContextProvider = (props: Props) => {
   const handleLogin = (username: string) => {
     setUser(username);
     localStorage.setItem("user", username);
-    navigate("/");
   };
 
   const handleLogout = () => {
     console.log("Here i am");
     setUser(null);
     localStorage.removeItem("user");
-    navigate("/login");
   };
 
   const context: AuthContextField = {
