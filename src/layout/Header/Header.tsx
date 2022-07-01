@@ -1,7 +1,6 @@
 import { AppBar, Box, CssBaseline, Toolbar, Typography } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../lib/hooks/context/AuthContext/AuthContext";
-import { ProfileSidebar } from "../ProfileSidebar/ProfileSidebar";
 
 export const Header = () => {
   const { onLogout } = useAuthContext();
@@ -43,7 +42,17 @@ export const Header = () => {
                 fontWeight: "bold",
               }}
             >
-              <li>My Movies</li>
+              <li>
+                <NavLink
+                  to="/"
+                  style={() => ({
+                    color: "white",
+                    textDecoration: "none",
+                  })}
+                >
+                  My Movies
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="/my-profile"

@@ -25,21 +25,20 @@ const Posts = () => {
 
   console.log({ isLoading, error, data, isFetching });
 
-  if (isLoading) {
-    return <div>Loading posts...</div>;
-  }
-
-  if (isError) {
-    console.log(error);
-    return <div>Posts couldn't be loaded</div>;
-  }
-
   return (
-    <ul>
-      {data?.map((item) => (
-        <li key={item.id}>{item.title}</li>
-      ))}
-    </ul>
+    <>
+      {isLoading && <div>Loading posts...</div>}
+
+      {isError && <div>Posts couldn't be loaded</div>}
+
+      {data && (
+        <ul>
+          {data.map((item) => (
+            <li key={item.id}>{item.title}</li>
+          ))}
+        </ul>
+      )}
+    </>
   );
 };
 

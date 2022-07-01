@@ -28,7 +28,12 @@ export const DeactiveAccount = () => {
         }}
       >
         <Switch checked={checked} onChange={handleChange} />
-        <Button onClick={handleClick} color="primary" variant="contained">
+        <Button
+          onClick={handleClick}
+          color="primary"
+          variant="contained"
+          disabled={!checked}
+        >
           Save details
         </Button>
       </Box>

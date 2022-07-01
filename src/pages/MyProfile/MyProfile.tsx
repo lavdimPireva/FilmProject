@@ -9,8 +9,6 @@ import {
   Typography,
 } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import { Header } from "../../layout/Header/Header";
-import { ProfileSidebar } from "../../layout/ProfileSidebar/ProfileSidebar";
 import { useAuthContext } from "../../lib/hooks/context/AuthContext/AuthContext";
 
 export const MyProfile = () => {
@@ -19,12 +17,10 @@ export const MyProfile = () => {
 
   return (
     <>
-      <Header />
-      <ProfileSidebar />
       <Box
         sx={{
           mx: "auto",
-          my: 3,
+          my: 10,
           width: 1200,
           padding: 5,
         }}

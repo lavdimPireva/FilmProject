@@ -5,7 +5,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AuthContextProvider } from "./lib/hooks/context/AuthContext/AuthContextProvider";
 import { BrowserRouter } from "react-router-dom";
-import { Home } from "./layout/Home/Home";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -32,9 +31,7 @@ root.render(
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <AuthContextProvider>
-            <Home>
-              <App />
-            </Home>
+            <App />
           </AuthContextProvider>
         </ThemeProvider>
       </BrowserRouter>

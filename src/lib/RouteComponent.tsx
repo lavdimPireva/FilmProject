@@ -1,5 +1,7 @@
 import { useRoutes } from "react-router-dom";
 import { RouteWrapper } from "../components/ProtectedRoute/RouteWrapper";
+import { HomeLayout } from "../layout/HomeLayout/HomeLayout";
+import { ProfileLayout } from "../layout/ProfileLayout/ProfileLayout";
 import { Account } from "../pages/Account/Account";
 import { Comment } from "../pages/Comment/Comment";
 import { DeactiveAccount } from "../pages/DeactiveAccount/DeactiveAccount";
@@ -16,41 +18,51 @@ export const RouteComponent = () => {
     {
       path: "/",
       element: (
-        <RouteWrapper routeType="protected">
-          <Home />
-        </RouteWrapper>
+        <HomeLayout>
+          <RouteWrapper routeType="protected">
+            <Home />
+          </RouteWrapper>
+        </HomeLayout>
       ),
     },
     {
       path: "/posts",
       element: (
-        <RouteWrapper routeType="protected">
-          <Posts />
-        </RouteWrapper>
+        <HomeLayout>
+          <RouteWrapper routeType="protected">
+            <Posts />
+          </RouteWrapper>
+        </HomeLayout>
       ),
     },
     {
       path: "/comments",
       element: (
-        <RouteWrapper routeType="protected">
-          <Comment />
-        </RouteWrapper>
+        <HomeLayout>
+          <RouteWrapper routeType="protected">
+            <Comment />
+          </RouteWrapper>
+        </HomeLayout>
       ),
     },
     {
       path: "/photos",
       element: (
-        <RouteWrapper routeType="protected">
-          <Photos />
-        </RouteWrapper>
+        <HomeLayout>
+          <RouteWrapper routeType="protected">
+            <Photos />
+          </RouteWrapper>
+        </HomeLayout>
       ),
     },
     {
       path: "/my-profile",
       element: (
-        <RouteWrapper routeType="protected">
-          <MyProfile />
-        </RouteWrapper>
+        <ProfileLayout>
+          <RouteWrapper routeType="protected">
+            <MyProfile />
+          </RouteWrapper>
+        </ProfileLayout>
       ),
       children: [
         {

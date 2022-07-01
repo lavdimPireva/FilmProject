@@ -1,14 +1,13 @@
 import { Toolbar } from "@mui/material";
-import { useLocation } from "react-router-dom";
 import { useAuthContext } from "../../lib/hooks/context/AuthContext/AuthContext";
 import { Header } from "../Header/Header";
-import { Sidebar } from "../Sidebar/Sidebar";
+import { ProfileSidebar } from "./ProfileSidebar/ProfileSidebar";
 
 interface Props {
   children: JSX.Element;
 }
 
-export const Home = ({ children }: Props) => {
+export const ProfileLayout = ({ children }: Props) => {
   const { user } = useAuthContext();
 
   return (
@@ -16,7 +15,7 @@ export const Home = ({ children }: Props) => {
       {user && (
         <>
           <Header />
-          <Sidebar />
+          <ProfileSidebar />
         </>
       )}
 
