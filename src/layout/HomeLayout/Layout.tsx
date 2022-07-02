@@ -1,13 +1,13 @@
 import { Toolbar } from "@mui/material";
 import { useAuthContext } from "../../lib/hooks/context/AuthContext/AuthContext";
 import { Header } from "../Header/Header";
-import { ProfileSidebar } from "./ProfileSidebar/ProfileSidebar";
 
 interface Props {
   children: JSX.Element;
+  sidebar: JSX.Element;
 }
 
-export const ProfileLayout = ({ children }: Props) => {
+export const Layout = ({ children, sidebar }: Props) => {
   const { user } = useAuthContext();
 
   return (
@@ -15,7 +15,7 @@ export const ProfileLayout = ({ children }: Props) => {
       {user && (
         <>
           <Header />
-          <ProfileSidebar />
+          {sidebar}
         </>
       )}
 

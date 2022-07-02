@@ -1,4 +1,3 @@
-import { AccountBox, PrivacyTip, PrivacyTipRounded } from "@mui/icons-material";
 import {
   Drawer,
   List,
@@ -7,39 +6,22 @@ import {
   ListItemText,
   Toolbar,
 } from "@mui/material";
-import { grey } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 
-export const Sidebar = () => {
+export interface Item {
+  text: string;
+  icon: JSX.Element;
+  path: string;
+}
+
+interface Props {
+  items: Item[];
+}
+
+export const Sidebar = ({ items }: Props) => {
   const navigate = useNavigate();
 
   const drawerWidth = 240;
-
-  const items = [
-    {
-      text: "Post",
-      icon: <AccountBox fontSize="large" sx={{ color: grey[500] }} />,
-      path: "/posts",
-    },
-    {
-      text: "Comment",
-      icon: <PrivacyTip fontSize="large" sx={{ color: grey[500] }} />,
-      path: "/comments",
-    },
-
-    {
-      text: "Photos",
-      icon: (
-        <AccountBox
-          fontSize="large"
-          sx={{
-            color: grey[500],
-          }}
-        />
-      ),
-      path: "/photos",
-    },
-  ];
 
   return (
     <Drawer

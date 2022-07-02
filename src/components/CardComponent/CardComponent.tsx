@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { green } from "@mui/material/colors";
+import { useAuthContext } from "../../lib/hooks/context/AuthContext/AuthContext";
 
 interface Props {
   title: string;
@@ -17,12 +18,14 @@ interface Props {
 }
 
 export const CardComponent = ({ title, body, thumbnailUrl }: Props) => {
+  const { user } = useAuthContext();
+
   return (
-    <Card sx={{ width: 345 }}>
+    <Card sx={{ width: 300 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: green[500] }} aria-label="recipe">
-            R
+            {user?.charAt(0)}
           </Avatar>
         }
         action={
@@ -30,7 +33,7 @@ export const CardComponent = ({ title, body, thumbnailUrl }: Props) => {
             <DeleteOutlined />
           </IconButton>
         }
-        title={title}
+        title={"title"}
         subheader={"September 14, 2022"}
       ></CardHeader>
 

@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { CardComponent } from "../../components/CardComponent/CardComponent";
@@ -26,7 +27,19 @@ export const Comment = () => {
 
   return (
     <>
-      {isLoading && <div>Loading posts...</div>}
+      {isLoading && (
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translateY(-50%)",
+          }}
+        >
+          {" "}
+          <CircularProgress />
+        </div>
+      )}
 
       {isError && <div>Comments couldn't be loaded</div>}
 

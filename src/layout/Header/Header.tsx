@@ -44,7 +44,7 @@ export const Header = () => {
             >
               <li>
                 <NavLink
-                  to="/"
+                  to="/my-movie"
                   style={() => ({
                     color: "white",
                     textDecoration: "none",

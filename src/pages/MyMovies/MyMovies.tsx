@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
-export const Home = () => {
+export const MyMovies = () => {
   return (
     <>
       <Box
@@ -11,6 +11,7 @@ export const Home = () => {
         }}
       >
         <Typography variant="h3">My Movies</Typography>
+        <Outlet />
       </Box>
     </>
   );
