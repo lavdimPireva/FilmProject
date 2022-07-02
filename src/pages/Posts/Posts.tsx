@@ -1,5 +1,17 @@
+import { DeleteOutlined } from "@mui/icons-material";
+import {
+  Avatar,
+  Card,
+  CardContent,
+  CardHeader,
+  CircularProgress,
+  IconButton,
+  Typography,
+} from "@mui/material";
+import { red } from "@mui/material/colors";
 import axios from "axios";
 import { useQuery } from "react-query";
+import { CardComponent } from "../../components/CardComponent/CardComponent";
 
 interface Post {
   userId: number;
@@ -13,7 +25,11 @@ const Posts = () => {
     "posts",
     () =>
       axios
-        .get("https://jsonplaceholder.typicode.com/posts")
+        .get(`${process.env.REACT_APP_JSON_PLACEHOLDER_API}/posts`, {
+          params: {
+            _limit: 50,
+          },
+        })
         .then((res) => res.data),
     {
       // refetchOnMount: false,
@@ -23,20 +39,42 @@ const Posts = () => {
     }
   );
 
+  console.log("development", process.env.REACT_APP_JSON_PLACEHOLDER_API);
+
   console.log({ isLoading, error, data, isFetching });
 
   return (
     <>
-      {isLoading && <div>Loading posts...</div>}
+      {isLoading && (
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translateY(-50%)",
+          }}
+        >
+          {" "}
+          <CircularProgress />
+        </div>
+      )}
 
       {isError && <div>Posts couldn't be loaded</div>}
 
       {data && (
-        <ul>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            rowGap: 30,
+            columnGap: 40,
+          }}
+        >
           {data.map((item) => (
-            <li key={item.id}>{item.title}</li>
+            <CardComponent key={item.id} title={item.title} body={item.body} />
           ))}
-        </ul>
+        </div>
       )}
     </>
   );

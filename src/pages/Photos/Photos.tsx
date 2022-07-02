@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useQuery } from "react-query";
+import { CardComponent } from "../../components/CardComponent/CardComponent";
 
 interface Photo {
   albumId: number;
@@ -10,10 +11,13 @@ interface Photo {
 }
 
 const fetchPhotos = async () => {
-  const res = await axios
-    .get("https://jsonplaceholder.typicode.com/photos")
+  return axios
+    .get(`${process.env.REACT_APP_JSON_PLACEHOLDER_API}/photos`, {
+      params: {
+        _limit: 50,
+      },
+    })
     .then((res) => res.data);
-  return res;
 };
 
 export const Photos = () => {
@@ -28,9 +32,22 @@ export const Photos = () => {
       {isError && <div>Comments couldn't be loaded</div>}
 
       {data && (
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            rowGap: 30,
+            columnGap: 40,
+          }}
+        >
           {data.map((item) => (
-            <img src={item.thumbnailUrl} alt={item.title} />
+            <CardComponent
+              key={item.id}
+              title={item.title}
+              body={item.thumbnailUrl}
+              thumbnailUrl={item.thumbnailUrl}
+            />
           ))}
         </div>
       )}

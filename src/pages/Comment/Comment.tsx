@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { Header } from "../../layout/Header/Header";
-import { Sidebar } from "../../layout/HomeLayout/HomeSidebar/Sidebar";
+import { CardComponent } from "../../components/CardComponent/CardComponent";
 
 interface Comment {
   postId: number;
@@ -13,7 +12,7 @@ interface Comment {
 
 const fetchComments = async () => {
   const res = await axios
-    .get("https://jsonplaceholder.typicode.com/comments")
+    .get(`${process.env.REACT_APP_JSON_PLACEHOLDER_API}/comments`)
     .then((res) => res.data);
 
   return res;
@@ -32,11 +31,19 @@ export const Comment = () => {
       {isError && <div>Comments couldn't be loaded</div>}
 
       {data && (
-        <ul>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            rowGap: 30,
+            columnGap: 40,
+          }}
+        >
           {data.map((item) => (
-            <li key={item.id}>{item.body}</li>
+            <CardComponent key={item.id} title={item.email} body={item.body} />
           ))}
-        </ul>
+        </div>
       )}
     </>
   );
