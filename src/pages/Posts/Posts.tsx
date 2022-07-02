@@ -1,14 +1,4 @@
-import { DeleteOutlined } from "@mui/icons-material";
-import {
-  Avatar,
-  Card,
-  CardContent,
-  CardHeader,
-  CircularProgress,
-  IconButton,
-  Typography,
-} from "@mui/material";
-import { red } from "@mui/material/colors";
+import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { CardComponent } from "../../components/CardComponent/CardComponent";

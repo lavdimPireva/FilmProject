@@ -21,7 +21,15 @@ export const CardComponent = ({ title, body, thumbnailUrl }: Props) => {
   const { user } = useAuthContext();
 
   return (
-    <Card sx={{ width: 300 }}>
+    <Card
+      sx={{
+        width: 300,
+        transition: "transform 450ms",
+        ":hover": {
+          transform: "scale(1.08)",
+        },
+      }}
+    >
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: green[500] }} aria-label="recipe">
@@ -33,7 +41,7 @@ export const CardComponent = ({ title, body, thumbnailUrl }: Props) => {
             <DeleteOutlined />
           </IconButton>
         }
-        title={"title"}
+        title={title}
         subheader={"September 14, 2022"}
       ></CardHeader>
 
@@ -41,7 +49,7 @@ export const CardComponent = ({ title, body, thumbnailUrl }: Props) => {
         <CardMedia
           component="img"
           height="350"
-          image="https://images-na.ssl-images-amazon.com/images/I/81y72TQXS+L.jpg"
+          image={thumbnailUrl}
           alt="Paella dish"
         />
       ) : null}

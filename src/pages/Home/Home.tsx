@@ -10,7 +10,7 @@ export const Home = () => {
           marginTop: "100px",
         }}
       >
-        <Typography variant="h3">My Movies</Typography>
+        <Typography variant="h3">Welcome to Movie Project</Typography>
       </Box>
     </>
   );
