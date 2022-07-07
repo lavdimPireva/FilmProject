@@ -1,13 +1,16 @@
 import React, { useContext } from "react";
+import { Role } from "../../../../components/ProtectedRoute/RouteWrapper";
 
 export interface AuthContextField {
   user: string | null;
+  userRole: Role;
   onLogout: () => void;
   onLogin: (username: string) => void;
 }
 
 export const AuthContext = React.createContext<AuthContextField>({
   user: null,
+  userRole: "user",
   onLogin: () => {},
   onLogout: () => {},
 });

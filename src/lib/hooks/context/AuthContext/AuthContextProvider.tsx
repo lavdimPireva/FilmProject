@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Role } from "../../../../components/ProtectedRoute/RouteWrapper";
 import { AuthContext, AuthContextField } from "./AuthContext";
 
 interface Props {
@@ -7,11 +7,11 @@ interface Props {
 }
 
 export const AuthContextProvider = (props: Props) => {
-  const navigate = useNavigate();
-
   const [user, setUser] = useState<string | null>(() =>
     localStorage.getItem("user")
   );
+
+  const [userRole, setUserRole] = useState<Role>("user");
 
   const handleLogin = (username: string) => {
     setUser(username);
@@ -19,13 +19,13 @@ export const AuthContextProvider = (props: Props) => {
   };
 
   const handleLogout = () => {
-    console.log("Here i am");
     setUser(null);
     localStorage.removeItem("user");
   };
 
   const context: AuthContextField = {
     user,
+    userRole,
     onLogin: handleLogin,
     onLogout: handleLogout,
   };

@@ -1,7 +1,7 @@
-import { RouteComponent } from "./lib/RouteComponent";
+import { Routes } from "./lib/Routes";
 
 function App() {
-  return <RouteComponent />;
+  return <Routes />;
 }
 
 export default App;

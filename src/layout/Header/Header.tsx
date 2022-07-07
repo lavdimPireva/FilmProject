@@ -1,5 +1,6 @@
-import { AppBar, Box, CssBaseline, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, CssBaseline, Toolbar } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
+import { PermissionWrapper } from "../../components/PermissionWrapper/PermissionWrapper";
 import { useAuthContext } from "../../lib/hooks/context/AuthContext/AuthContext";
 
 export const Header = () => {
@@ -29,6 +30,7 @@ export const Header = () => {
                 width: "80px",
                 cursor: "pointer",
               }}
+              alt=""
               onClick={() => navigate("/")}
             />
           </Box>
@@ -42,6 +44,19 @@ export const Header = () => {
                 fontWeight: "bold",
               }}
             >
+              <PermissionWrapper role={["admin", "editor"]}>
+                <li>
+                  <NavLink
+                    to="/admin"
+                    style={() => ({
+                      color: "white",
+                      textDecoration: "none",
+                    })}
+                  >
+                    Admin
+                  </NavLink>
+                </li>
+              </PermissionWrapper>
               <li>
                 <NavLink
                   to="/my-movie"

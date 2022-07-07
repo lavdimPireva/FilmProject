@@ -1,28 +1,9 @@
 import { CircularProgress } from "@mui/material";
-import axios from "axios";
-import { useQuery } from "react-query";
+import { usePhotos } from "../../api/hooks/usePhotos";
 import { CardComponent } from "../../components/CardComponent/CardComponent";
 
-interface Photo {
-  albumId: number;
-  id: number;
-  title: string;
-  url: string;
-  thumbnailUrl: string;
-}
-
-const fetchPhotos = async () => {
-  return axios
-    .get(`${process.env.REACT_APP_JSON_PLACEHOLDER_API}/photos`, {
-      params: {
-        _limit: 50,
-      },
-    })
-    .then((res) => res.data);
-};
-
 export const Photos = () => {
-  const { isLoading, isError, data } = useQuery<Photo[]>("photos", fetchPhotos);
+  const { isLoading, isError, data } = usePhotos();
 
   console.log({ isLoading, isError, data });
 

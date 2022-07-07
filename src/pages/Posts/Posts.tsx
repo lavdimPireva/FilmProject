@@ -1,33 +1,9 @@
 import { CircularProgress } from "@mui/material";
-import axios from "axios";
-import { useQuery } from "react-query";
+import { usePosts } from "../../api/hooks/usePosts";
 import { CardComponent } from "../../components/CardComponent/CardComponent";
 
-interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
-
 const Posts = () => {
-  const { isLoading, isError, error, data, isFetching } = useQuery<Post[]>(
-    "posts",
-    () =>
-      axios
-        .get(`${process.env.REACT_APP_JSON_PLACEHOLDER_API}/posts`, {
-          params: {
-            _limit: 50,
-          },
-        })
-        .then((res) => res.data),
-    {
-      // refetchOnMount: false,
-      // cacheTime: 0,
-      // keepPreviousData: false,
-      // enable:
-    }
-  );
+  const { isLoading, isError, error, data, isFetching } = usePosts();
 
   console.log("development", process.env.REACT_APP_JSON_PLACEHOLDER_API);
 

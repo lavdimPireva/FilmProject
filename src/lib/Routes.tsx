@@ -5,7 +5,7 @@ import { Sidebar } from "../layout/HomeLayout/HomeSidebar/Sidebar";
 import { Account } from "../pages/Account/Account";
 import { Action } from "../pages/Action/Action";
 import { Comedy } from "../pages/Comedy/Comedy";
-import { Comment } from "../pages/Comment/Comment";
+import { Comments } from "../pages/Comment/Comment";
 import { DeactiveAccount } from "../pages/DeactiveAccount/DeactiveAccount";
 import { Home } from "../pages/Home/Home";
 import { Login } from "../pages/Login/Login";
@@ -21,8 +21,11 @@ import {
   movieItems,
   profileItems,
 } from "../components/sidebarElements";
+import { Admin } from "../pages/Admin/Admin";
+import { AccessControl } from "../components/AccessControl/AccessControl";
+import { SCOPES } from "../components/AccessControl/permission-maps";
 
-export const RouteComponent = () => {
+export const Routes = () => {
   const element = useRoutes([
     {
       path: "/",
@@ -75,7 +78,7 @@ export const RouteComponent = () => {
       element: (
         <Layout sidebar={<Sidebar items={homeItems} />}>
           <RouteWrapper routeType="protected">
-            <Comment />
+            <Comments />
           </RouteWrapper>
         </Layout>
       ),
@@ -132,6 +135,22 @@ export const RouteComponent = () => {
           <Register />
         </RouteWrapper>
       ),
+    },
+
+    {
+      path: "/admin",
+      element: (
+        <Layout sidebar={<Sidebar items={homeItems} />}>
+          <RouteWrapper role={["admin", "editor"]} routeType="protected">
+            <Admin />
+          </RouteWrapper>
+        </Layout>
+      ),
+    },
+
+    {
+      path: "*",
+      element: <p>Page not found</p>,
     },
   ]);
 

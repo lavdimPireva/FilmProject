@@ -1,29 +1,9 @@
 import { CircularProgress } from "@mui/material";
-import axios from "axios";
-import { useQuery } from "react-query";
+import { useComment } from "../../api/hooks/useComment";
 import { CardComponent } from "../../components/CardComponent/CardComponent";
 
-interface Comment {
-  postId: number;
-  id: number;
-  name: string;
-  email: string;
-  body: string;
-}
-
-const fetchComments = async () => {
-  const res = await axios
-    .get(`${process.env.REACT_APP_JSON_PLACEHOLDER_API}/comments`)
-    .then((res) => res.data);
-
-  return res;
-};
-
-export const Comment = () => {
-  const { isLoading, isError, data } = useQuery<Comment[]>(
-    "comments",
-    fetchComments
-  );
+export const Comments = () => {
+  const { isLoading, isError, data } = useComment();
 
   return (
     <>
